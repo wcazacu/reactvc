@@ -3,7 +3,7 @@ import './App.css';
 //import Heading from './Heading.js';
 
 function Heading() {
-    return (<h1>Hello World me1</h1>);
+    return (<h1>Hello World me2</h1>);
 }
 
 function App() {
