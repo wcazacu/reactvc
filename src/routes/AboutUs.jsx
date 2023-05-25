@@ -1,5 +1,4 @@
 import React from "react";
-import { Fade } from "react-awesome-reveal";
 import "../App.css";
 
 export default function AboutUs() {
@@ -30,31 +29,26 @@ export default function AboutUs() {
           support the community.
         </p>
       </section>
-      <Fade right delay={600}>
-        <section className="vision">
-          <h2 className="vision-title">Our Vision</h2>
-          <p className="vision-text">
-            To be the leading provider of home accommodations that redefine the
-            travel experience and make every guest feel at home.
-          </p>
-        </section>
-      </Fade>
-
-      <Fade left delay={600}>
-        <section className="mission">
-          <h2 className="mission-title">Our Mission</h2>
-          <p className="mission-text">
-            Our mission is to provide our guests with comfortable, personalized,
-            and memorable home accommodations that cater to their unique needs
-            and preferences. We strive to create a warm and welcoming
-            environment that fosters a sense of community and belonging. We are
-            committed to sustainable practices, giving back to our local
-            community, and ensuring that every guest feels like part of the
-            family. Our goal is to exceed expectations and make every stay
-            unforgettable.
-          </p>
-        </section>
-      </Fade>
+      <section className="vision">
+        <h2 className="vision-title">Our Vision</h2>
+        <p className="vision-text">
+          To be the leading provider of home accommodations that redefine the
+          travel experience and make every guest feel at home.
+        </p>
+      </section>
+      <section className="mission">
+        <h2 className="mission-title">Our Mission</h2>
+        <p className="mission-text">
+          Our mission is to provide our guests with comfortable, personalized,
+          and memorable home accommodations that cater to their unique needs
+          and preferences. We strive to create a warm and welcoming
+          environment that fosters a sense of community and belonging. We are
+          committed to sustainable practices, giving back to our local
+          community, and ensuring that every guest feels like part of the
+          family. Our goal is to exceed expectations and make every stay
+          unforgettable.
+        </p>
+      </section>
 
       <section className="about-us-details">
         <div className="abtUs-card">
