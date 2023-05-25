@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "quote": "Thanks to this real estate agent, I was able to find my dream home in no time. Highly recommend their services!",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "quote": "I've worked with several real estate agents in the past, but this one stands out. They went above and beyond to help me find the perfect investment property.",
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "name": "Bob Johnson",
+    "quote": "As a first-time homebuyer, I had a lot of questions and concerns. This real estate agent guided me through the process and made everything easy and stress-free.",
+    "rating": 4.5
+  },
+  {
+    "id": 4,
+    "name": "Samantha Lee",
+    "quote": "I was nervous about selling my home, but this real estate agent made the process seamless. They were professional, knowledgeable, and responsive throughout the entire process.",
+    "rating": 5
+  },
+  {
+    "id": 5,
+    "name": "Mike Wilson",
+    "quote": "I've been working with this real estate agent for several years now and they've helped me build a profitable real estate portfolio. Their expertise and guidance have been invaluable.",
+    "rating": 4
+  }
+]
