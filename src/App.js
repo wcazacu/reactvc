@@ -1,57 +1,153 @@
-import Hdr from './Header';
+import { useState } from "react";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import Home from "./routes/Home";
+import ListApartment from "./routes/ListApartment";
+import Root from "./routes/Root";
+import NoPage from "./routes/NoPage";
+import Contact from "./routes/Contact";
+import AboutUs from "./routes/AboutUs";
+import Cart from "./routes/Cart";
+import Listings from "./routes/Listings";
+import listings from "./listings.json";
+import testimonials from "./testimonials.json";
+import { useEffect } from "react";
 
-const App = () => {
-  const course = 'Half Stack application development x'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+export default function App() {
+  const [properties, setProperties] = useState(listings);
+  const [testimonies, setTestimonies] = useState(testimonials);
+  //state that stores the user input
+  const [propertiesSearch, setPropertiesSearch] = useState({
+    city: "",
+    location: "",
+    bedroom: 0,
+    bathroom: 0,
+    minPrice: 0,
+    maxPrice: 0,
+    minArea: 0,
+    maxArea: 0,
+  });
+  //state that stores the filtered results
+  const [filtered, setFiltered] = useState([]);
+  const [userListings, setUserListings] = useState({
+    id: Math.random(),
+    title: "",
+    address: "",
+    description: "",
+    price: 0,
+    bedroom: 0,
+    bathroom: 0,
+    sqrft: 0,
+  });
 
-  const parts = [
-    { part: 'Fundamentals of React', exercises: 10 },
-    { part: 'Using props to pass data', exercises: 7 },
-    { part: 'State of a component', exercises: 14 }
-  ]
-
-  // function Header(props) {
-  //   return (
-  //     <h1>{props.course}</h1>
-  //   )
-  // }
-
-  function Content(props) {
-    debugger;
-    return (
-      <div>
-        <p>
-          {props.part1} {props.exercises1}
-        </p>
-        <p>
-          {props.part2} {props.exercises2}
-        </p>
-        <p>
-          {props.part3} {props.exercises3}
-        </p>
-      </div>
-    );
+  //handles all the input event changes
+  function handleChange(e) {
+    const name = e.target.name;
+    const value =
+      e.target.type === "number" ? parseInt(e.target.value) : e.target.value;
+    setPropertiesSearch((prevPropertiesSearch) => {
+      return {
+        ...prevPropertiesSearch,
+        [name]: value,
+      };
+    });
   }
 
-  function Total({ total }) {
-    return (
-      <p>Number of exercises {total}</p>
-    );
+  //handles the search button click event
+  function click() {
+    let result = properties.filter((property) => {
+      return (
+        property.city
+          .toLowerCase()
+          .includes(propertiesSearch.city.toLowerCase()) &&
+        property.bedroom === propertiesSearch.bedroom &&
+        property.bathroom === propertiesSearch.bathroom &&
+        property.price >= propertiesSearch.minPrice &&
+        property.price <= propertiesSearch.maxPrice &&
+        property.sqrft >= propertiesSearch.minArea &&
+        property.sqrft <= propertiesSearch.maxArea
+      );
+    });
+    setFiltered(result);
   }
+
+  //handle listing input event changes
+  function handleUserListing(e) {
+    const name = e.target.name;
+    const value =
+      e.target.type === "number" ? parseInt(e.target.value) : e.target.value;
+    setUserListings((prevUserListing) => {
+      return {
+        ...prevUserListing,
+        [name]: value,
+      };
+    });
+  }
+
+  //handles listing submit button event
+  function listingSubmit() {
+    setProperties((prevProperties) => {
+      const newProperties = [...prevProperties, userListings];
+      localStorage.setItem("properties", JSON.stringify(newProperties));
+      return newProperties;
+    });
+    console.log(properties);
+  }
+
+  useEffect(() => {
+    const storedProperties = localStorage.getItem("properties");
+    if (storedProperties) {
+      setProperties(JSON.parse(storedProperties));
+    }
+  }, []);
 
   return (
-    <div>
-      <Hdr course={course} />
-      <Content part1={part1} part2={part2} part3={part3} exercises1={exercises1} exercises2={exercises2} exercises3={exercises3} />
-      <Total total={exercises1 + exercises2 + exercises3} />
+    <div className="App">
+      <RouterProvider
+        router={createBrowserRouter(
+          createRoutesFromElements(
+            <Route path="/" element={<Root />}>
+              <Route
+                index
+                element={
+                  <Home properties={properties} testimonies={testimonies} />
+                }
+              ></Route>
+              <Route
+                path="list-apartment"
+                element={
+                  <ListApartment
+                    properties={properties}
+                    userListings={userListings}
+                    handleUserListing={handleUserListing}
+                    listingSubmit={listingSubmit}
+                  />
+                }
+              ></Route>
+              <Route path="about-us" element={<AboutUs />}></Route>
+              <Route
+                path="listings"
+                element={
+                  <Listings
+                    properties={properties}
+                    propertiesSearch={propertiesSearch}
+                    filtered={filtered}
+                    click={click}
+                    handleChange={handleChange}
+                  />
+                }
+              ></Route>
+              <Route path="cart" element={<Cart />}></Route>
+              <Route path="contact" element={<Contact />}></Route>
+              <Route path="*" element={<NoPage />} />
+            </Route>
+          )
+        )}
+      />
     </div>
   );
 }
-
-
-export default App
