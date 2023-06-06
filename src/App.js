@@ -1,18 +1,19 @@
 import { useState } from "react";
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
+  BrowserRouter as Router,
+  Routes,
   Route,
-  RouterProvider,
+  Link
 } from "react-router-dom";
-import Home from "./routes/Home";
-import ListApartment from "./routes/ListApartment";
-import Root from "./routes/Root";
-import NoPage from "./routes/NoPage";
-import Contact from "./routes/Contact";
-import AboutUs from "./routes/AboutUs";
-import Cart from "./routes/Cart";
-import Listings from "./routes/Listings";
+import Home from "./Components/Home";
+import ListApartment from "./Components/ListApartment";
+import Root from "./Components/Root";
+import Navigbar from "./Components/Navigbar";
+import NoPage from "./Components/NoPage";
+import Contact from "./Components/Contact";
+import AboutUs from "./Components/AboutUs";
+import Cart from "./Components/Cart";
+import Listings from "./Components/Listings";
 import listings from "./listings.json";
 import testimonials from "./testimonials.json";
 import { useEffect } from "react";
@@ -107,47 +108,41 @@ export default function App() {
 
   return (
     <div className="App">
-      <RouterProvider
-        router={createBrowserRouter(
-          createRoutesFromElements(
-            <Route path="/" element={<Root />}>
-              <Route
-                index
-                element={
-                  <Home properties={properties} testimonies={testimonies} />
-                }
-              ></Route>
-              <Route
-                path="list-apartment"
-                element={
-                  <ListApartment
-                    properties={properties}
-                    userListings={userListings}
-                    handleUserListing={handleUserListing}
-                    listingSubmit={listingSubmit}
-                  />
-                }
-              ></Route>
-              <Route path="about-us" element={<AboutUs />}></Route>
-              <Route
-                path="listings"
-                element={
-                  <Listings
-                    properties={properties}
-                    propertiesSearch={propertiesSearch}
-                    filtered={filtered}
-                    click={click}
-                    handleChange={handleChange}
-                  />
-                }
-              ></Route>
-              <Route path="cart" element={<Cart />}></Route>
-              <Route path="contact" element={<Contact />}></Route>
-              <Route path="*" element={<NoPage />} />
-            </Route>
-          )
-        )}
-      />
+      <Router>
+        <Navigbar />
+
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Routes>
+          <Route path="/" element={<Home properties={properties} testimonies={testimonies} />} />
+          <Route exact path="/contact" element={<Contact />} />
+          <Route exact path="/about-us" element={<AboutUs />} />
+          <Route exact path="/cart" element={<Cart />} />
+          <Route
+            path="list-apartment"
+            element={
+              <ListApartment
+                properties={properties}
+                userListings={userListings}
+                handleUserListing={handleUserListing}
+                listingSubmit={listingSubmit}
+              />
+            }
+          ></Route>
+          <Route
+            path="listings"
+            element={
+              <Listings
+                properties={properties}
+                propertiesSearch={propertiesSearch}
+                filtered={filtered}
+                click={click}
+                handleChange={handleChange}
+              />
+            }
+          ></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
