@@ -3,27 +3,20 @@ body {
   font-family: inter;
 }
 
-.App {
+
+.align-right {
+  position:absolute_bottom-0 end-0;
+}
+.navbar-logo {
+  max-width: max-content  !important;
+}
+.navbar{
+  background-color: white;
 }
 
-/* Navbar */
-nav {
-}
 
-.NavBar {
-  font-weight: 400;
-  height: 20px;
-  list-style-type: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
-  /* margin-top: 0px;
-  margin-bottom: 0px;
-  padding-top: 15px; */
-}
-
-/* .nav-links:link {
+.nav-links:link {
   color: gray;
   text-decoration: none;
 }
@@ -38,7 +31,7 @@ nav {
 .nav-links:active {
   color: darkblue;
   text-decoration: underline;
-} */
+} 
 
 /* Home */
 
@@ -52,9 +45,7 @@ nav {
   color: orangered;
   font-weight: 500;
 }
-
-.home {
-}
+ 
 
 .home-title {
   text-align: center;
@@ -63,10 +54,10 @@ nav {
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
 
-  background-image: url(../public/heroImg.jpg);
+  background-image: url(../public/banner1.jpg);
 
   /* Set a specific height */
-  height: 40vh;
+  height: 100vh;
   /* Position and center the image to scale nicely on all screens */
   background-position: right;
   background-repeat: no-repeat;
@@ -78,13 +69,18 @@ nav {
 .hero-text {
   text-align: center;
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 50%;
-  transform: translate(-100%, -50%);
+  transform: translate(-50%, -50%);
   color: white;
   font-weight: 700;
 }
 
+.hero-text h1{
+  font-size: 4rem;
+  font-weight: 500;
+  font-family: 'Circular Std';
+}
 .hero-text > p {
   font-weight: 400;
 }
@@ -96,16 +92,7 @@ nav {
   margin-left: 10px;
 }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(73, 72, 72, 0.2);
-  max-width: 300px;
-  margin-left: 30px;
-  margin-bottom: 30px;
-  text-align: left;
-  cursor: pointer;
-  position: relative;
-  height: 400px;
-}
+
 
 .hover-text {
   position: absolute;
@@ -116,73 +103,6 @@ nav {
   left: 15%;
   display: none;
   transition: display 0.5s ease-in-out;
-}
-
-.card:hover .card-text {
-  background: linear-gradient(
-    circle at 50% 50%,
-    rgb(156, 156, 156),
-    rgba(76, 0, 255, 0)
-  );
-  opacity: 0.07;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.card:hover .card-img {
-  background: linear-gradient(
-    circle at 50% 50%,
-    rgb(156, 156, 156),
-    rgba(76, 0, 255, 0)
-  );
-  opacity: 0.1;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.card:hover .hover-text {
-  display: block;
-}
-
-.card-img {
-  max-width: 100%;
-}
-
-.card-text h4 {
-  padding-left: 10px;
-  margin-bottom: 10px;
-  font-weight: 700px;
-}
-
-.card-text p {
-  margin-top: 0px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  font-weight: 400;
-  color: gray;
-}
-
-.card-text p.card-price {
-  margin-top: 0px;
-  font-weight: 500;
-  color: orangered;
-  font-size: 30px;
-}
-
-.card-icons {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-left: 10px;
-  font-size: 12px;
-}
-
-.card-icons-line {
-  padding: 0 10px;
-  margin-right: 10px;
-  border-right: 1px solid black;
-}
-
-.card-icons span {
-  color: orangered;
 }
 
 .testimonials-title {
