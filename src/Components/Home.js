@@ -111,7 +111,7 @@ export default function Home(props) {
           showThumbs={false}
           showStatus={false}
           autoPlay={true}
-          interval={6100}
+          interval={3100}
         >
           {testimonials}
         </Carousel>
